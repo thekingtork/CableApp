@@ -3,6 +3,7 @@
 namespace App\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Administrador
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Administrador
+class Administrador implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -240,5 +241,45 @@ class Administrador
     public function getSalt()
     {
         return $this->salt;
+    }
+    
+    public function __toString()
+    {
+        return $this->getNombres();
+    }
+    
+    /*----------------------------------------*/
+    function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
+    
+    function getUsername()
+    {
+        return $this->getUsuario();
+    }
+     function eraseCredentials()
+    {
+        
+    }
+    /*-----------------------------*/
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
     }
 }

@@ -571,4 +571,9 @@ class Afiliacion
     {
         return $this->ncuotas;
     }
+    
+    public function __toString()
+    {
+        return $this->getNcontrato();
+    }
 }

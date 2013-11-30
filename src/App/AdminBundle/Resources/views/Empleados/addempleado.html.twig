@@ -37,38 +37,7 @@
     <div class="elemento" style="display: none;">
         <h1>Registrar Nuevo empleado</h1>
         <form action="{{path('addempleado')}}" method="post" class="ajaxdatos">
-            <div>{{form_errors(formulario)}}</div>
-            <div>
-                {{form_errors(formulario.nombres)}}
-                {{form_widget(formulario.nombres,{attr:{'placeholder':'Nombre'}})}}
-            </div>
-            <div>
-                {{form_errors(formulario.apellidos)}}
-                {{form_widget(formulario.apellidos,{attr:{'placeholder':'Apellidos'}})}}
-            </div>
-            <div>
-                {{form_errors(formulario.identificacion)}}
-                {{form_widget(formulario.identificacion,{attr:{'placeholder':'Identificacion'}})}}
-            </div>
-            <div>
-                {{form_label(formulario.perfil,'Perfil')}}
-                {{form_errors(formulario.perfil)}}
-                {{form_widget(formulario.perfil,{attr:{'placeholder':'Perfil'}})}}
-            </div>
-            <div>
-                {{form_errors(formulario.telefono)}}
-                {{form_widget(formulario.telefono,{attr:{'placeholder':'Telefono'}})}}
-            </div>
-            <div>
-                {{form_errors(formulario.salario)}}
-                {{form_widget(formulario.salario,{attr:{'placeholder':'Salario'}})}}
-            </div>
-            <div>
-                {{form_label(formulario.activo,'Activo')}}
-                {{form_errors(formulario.activo)}}
-                {{form_widget(formulario.activo,{attr:{'required':'false'}})}}
-            </div>
-            <div>{{form_rest(formulario)}}</div>
+            {{form_widget(formulario)}}
             <br />
             <button class="btn btn-info">Registrar</button>
         </form>

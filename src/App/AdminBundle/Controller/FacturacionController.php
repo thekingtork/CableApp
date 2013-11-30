@@ -3,7 +3,9 @@
 namespace App\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\AdminBundle\Form\AfiliacionTransfType;
+use App\AdminBundle\Entity\Factura;
+use App\AdminBundle\Form\FacturaType;
+
 
 class FacturacionController extends Controller
 {
@@ -15,14 +17,35 @@ class FacturacionController extends Controller
     public function buscarfactAction()
     {
         $request = $this->getRequest();
-        
+        $em = $this->getDoctrine()->getManager();
+        $nroFactura=$em->getRepository('AdminBundle:Factura')->findAll();
+        $dato = $request->request->get('mydato');
+        $afiliacion = $em->getRepository('AdminBundle:Afiliacion')->findOneBy(array('documento'=>$dato));
+        $factura = new Factura();
+        $reg = count($nroFactura);
+        $total = 10000+$reg;
+        $factura->setNroFactura($total);
+        $factura->setDiasfacturados(30);
+        $factura->setFechaExp(new \DateTime());
+        $dd= new \DateTime();
+        $dd->modify('+7 day');
+        $factura->setFechaCorte($dd);
+        $factura->setAfiliacion($afiliacion);
+        $factura->setPago(false);
+        $formulario = $this->createForm(new FacturaType(),$factura);
+        if($request->getMethod()=='POST' and $dato)
+        {   
+            return $this->render('AdminBundle:Facturacion:facturar.html.twig',array('afiliacion'=>$afiliacion,'formulario'=>$formulario->createView()));            
+        }
         if($request->getMethod()=='POST')
         {
-            $em = $this->getDoctrine()->getManager();
-            $dato = $request->request->get('mydato');
-            $factura = $em->getRepository('AdminBundle:Afiliacion')->findOneBy(array('documento'=>$dato));
-            $formulario = $this->createForm(new AfiliacionTransfType(),$factura);
-            return $this->render('AdminBundle:Facturacion:facturar.html.twig',array('factura'=>$factura,'formulario'=>$formulario->createView()));            
+            $formulario->bind($request);
+            if($formulario->isValid())
+            {
+                $em->persist($factura);
+                $em->flush();
+                return $this->render('AdminBundle:Facturacion:exito.html.twig');
+            }
         }
     }
     

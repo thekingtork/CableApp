@@ -1,0 +1,20 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div>
+        <h1>Bienvenido</h1>
+        {% if error %}
+            <div class="">{{error.message}}</div>
+        {% endif %}
+        <form action="{{path('usuario_login_check')}}" method="post">
+            <div>
+            <label for="username">Usuario Administrador</label>
+            <input type="text" id="username" name="_username" placeholder="Administrador" />
+            </div>
+            <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password" placeholder="Ingresa tu password" />
+            </div>
+            <input class="btn btn-info" type="submit" value="Acceder" />
+        </form>
+    </div>
+{% endblock %}

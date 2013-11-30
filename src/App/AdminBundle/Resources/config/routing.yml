@@ -2,6 +2,20 @@ admin_homepage:
     pattern:  /
     defaults: { _controller: AdminBundle:General:index }
 
+usuario_login:
+      pattern: /login
+      defaults: {_controller:AdminBundle:General:login}
+
+usuario_login_check:
+      pattern: /login_check
+
+usuario_logout:
+      pattern: /logout
+      
+registrar:
+    pattern:  /registrar
+    defaults: { _controller: AdminBundle:General:registrar }
+
 adminempleados:
     pattern:  /adminempleados
     defaults: { _controller: AdminBundle:Empleados:adminEmpleados }

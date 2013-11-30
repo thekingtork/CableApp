@@ -1,7 +1,7 @@
 {% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
 {% block dinamico %}
 	<h1>Cambio propiertario</h1>
-    <form action="" method="post" class="ajaxdatos">
+    <form action="{{path('pretransferir',{'ind':afiliacion.id})}}" method="post" class="">
         <div>
             {{form_errors(formulario)}}
         </div>

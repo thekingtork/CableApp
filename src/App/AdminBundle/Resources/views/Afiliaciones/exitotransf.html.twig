@@ -1,0 +1,5 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Se ha transferido exitosamente</h1>
+    <a href="{{path('afiliaciones')}}" class="btn btn-info ajaxsimple">Afiliaciones</a>
+{% endblock %}

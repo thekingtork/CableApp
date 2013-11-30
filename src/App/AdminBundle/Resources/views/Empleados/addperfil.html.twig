@@ -2,9 +2,9 @@
 {% block dinamico %}
 	<h1>Registrar Nuevo Perfil</h1>
     {% for item in perfiles %}
-        <p class="alert alert-info">{{item.perfil}}</p>
+        <p class="label label-info">{{item.perfil}}</p>
     {% else %}
-        <p class="alert alert-danger">No hay perfiles registrados</p>
+        <p class="label label-danger">No hay perfiles registrados</p>
     {% endfor %}
     <form action="{{path('addperfil')}}" method="post" class="ajaxdatos">
         <div>{{form_errors(formulario)}}</div>

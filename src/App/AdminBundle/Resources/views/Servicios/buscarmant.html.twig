@@ -1,0 +1,26 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Orden mantenimiento</h1>
+    <div class="container">
+    {% if usuario %}
+        <div class="row">
+            <div class="col col-md-4">
+                Contrato: <br /> <span class="label label-info">{{usuario.ncontrato}}</span><br />
+                Cliente: <br /> <span class="label label-info">{{usuario.nombres}} {{usuario.apellidos}}</span><br />
+                {{usuario.tipoDocumento}} : <br /> <span class="label label-info">{{usuario.documento}}</span><br />
+                Direccion:<br /> <span class="label label-info">{{usuario.direccion}}</span>
+                
+            </div>
+            <div class="col col-md-4">
+                Valor a pagar:<br />
+                <span class="label label-info">{{usuario.cuotames}}</span>
+            </div>
+            <div class="col col-md-4">
+                <a href="#" class="btn btn-info">Generar factura</a>
+            </div>
+        </div>
+    {% else %}
+        <span class="label label-danger">Sin resultados</span>
+    {% endif %}
+    </div>
+{% endblock %}

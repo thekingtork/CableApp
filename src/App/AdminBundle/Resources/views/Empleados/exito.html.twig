@@ -1,0 +1,5 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Se ha editado el registro!</h1>
+    <a href="{{path('addempleado')}}" class="btn btn-info ajaxsimple">Empleados</a>
+{% endblock %}

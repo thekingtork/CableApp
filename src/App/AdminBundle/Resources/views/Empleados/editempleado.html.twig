@@ -1,0 +1,9 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Editar empleado</h1>
+    {{empleado.nombres}}
+    <form action="{{path('editempleado',{'ind':empleado.id})}}" method="post" class="ajaxdatos">
+        {{form_widget(formulario)}}
+        <button class="btn btn-info">Editar</button>
+    </form>
+{% endblock %}

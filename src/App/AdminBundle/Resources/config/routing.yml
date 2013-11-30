@@ -15,5 +15,37 @@ addperfil:
     defaults: { _controller: AdminBundle:Empleados:addperfil }
 
 editempleado:
-    pattern:  /editempleado
-    defaults: { _controller: AdminBundle:Empleados:aditempleado }
+    pattern:  /editempleado/{ind}
+    defaults: { _controller: AdminBundle:Empleados:editempleado }
+
+afiliaciones:
+    pattern:  /afiliaciones
+    defaults: { _controller: AdminBundle:Afiliaciones:afiliaciones }
+
+editafiliacion:
+    pattern:  /editafiliacion/{ind}
+    defaults: { _controller: AdminBundle:Afiliaciones:editafiliacion }
+
+pretransferir:
+    pattern:  /pretransferir/{ind}
+    defaults: { _controller: AdminBundle:Afiliaciones:pretransferir }
+
+transferir:
+    pattern:  /transferir
+    defaults: { _controller: AdminBundle:Afiliaciones:transferir }
+
+facturacion:
+    pattern:  /facturacion
+    defaults: { _controller: AdminBundle:Facturacion:facturacion }
+
+buscarfact:
+    pattern:  /buscarfact
+    defaults: { _controller: AdminBundle:Facturacion:buscarfact }
+
+mant:
+    pattern:  /mant
+    defaults: { _controller: AdminBundle:Servicios:mant }
+
+buscarmant:
+    pattern:  /buscarmant
+    defaults: { _controller: AdminBundle:Servicios:buscarmant }

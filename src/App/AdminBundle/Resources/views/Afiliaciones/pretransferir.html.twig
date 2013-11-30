@@ -1,0 +1,102 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Cambio propiertario</h1>
+    <form action="" method="post" class="ajaxdatos">
+        <div>
+            {{form_errors(formulario)}}
+        </div>
+        <div>
+            {{form_label(formulario.ncontrato,'Contrato Nro')}}
+            {{form_errors(formulario.ncontrato)}}
+            {{form_widget(formulario.ncontrato,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.documento,'Tipo Documento')}}
+            {{form_errors(formulario.tipoDocumento)}}
+            {{form_widget(formulario.tipoDocumento)}}
+        </div>
+        <div>
+            {{form_label(formulario.documento,'Documento')}}
+            {{form_errors(formulario.documento)}}
+            {{form_widget(formulario.documento)}}
+        </div>
+        <div>
+            {{form_label(formulario.rsocial,'Razon social')}}
+            {{form_errors(formulario.rsocial)}}
+            {{form_widget(formulario.rsocial)}}
+        </div>
+        <div>
+            {{form_label(formulario.nombres,'Nombres')}}
+            {{form_errors(formulario.nombres)}}
+            {{form_widget(formulario.nombres)}}
+        </div>
+        <div>
+            {{form_label(formulario.apellidos,'Apellidos')}}
+            {{form_errors(formulario.apellidos)}}
+            {{form_widget(formulario.apellidos)}}
+        </div>
+        <div>
+            {{form_label(formulario.fechaInstalacion,'Fecha de Instalacion')}}
+            {{form_errors(formulario.fechaInstalacion)}}
+            {{form_widget(formulario.fechaInstalacion)}}
+        </div>
+        <div>
+            {{form_label(formulario.tipoTelefono,'Tipo Contacto')}}
+            {{form_errors(formulario.tipoTelefono)}}
+            {{form_widget(formulario.tipoTelefono)}}
+        </div>
+        <div>
+            {{form_label(formulario.telefono,'Telefono')}}
+            {{form_errors(formulario.telefono)}}
+            {{form_widget(formulario.telefono)}}
+        </div>
+        <div>
+            {{form_label(formulario.correo,'Correo')}}
+            {{form_errors(formulario.correo)}}
+            {{form_widget(formulario.correo)}}
+        </div>
+        <div>
+            {{form_label(formulario.direccion,'Direccion')}}
+            {{form_errors(formulario.direccion)}}
+            {{form_widget(formulario.direccion)}}
+        </div>
+        <div>
+            {{form_label(formulario.valorInscripcion,'Valor Inscripcion')}}
+            {{form_errors(formulario.valorInscripcion)}}
+            {{form_widget(formulario.valorInscripcion)}}
+        </div>
+        <div>
+            {{form_label(formulario.ncuotas,'Nro Cuotas')}}
+            {{form_errors(formulario.ncuotas)}}
+            {{form_widget(formulario.ncuotas)}}
+        </div>
+        <div>
+            {{form_label(formulario.cuota1,'Vr Cuota 1')}}
+            {{form_errors(formulario.cuota1)}}
+            {{form_widget(formulario.cuota1)}}
+        </div>
+        <div>
+            {{form_label(formulario.cuota1,'Vr Cuota 2')}}
+            {{form_errors(formulario.cuota2)}}
+            {{form_widget(formulario.cuota2)}}
+        </div>
+        <div>
+            {{form_label(formulario.cuota1,'Vr Cuota 3')}}
+            {{form_errors(formulario.cuota3)}}
+            {{form_widget(formulario.cuota3)}}
+        </div>
+        <div>
+            {{form_label(formulario.cuotaMes,'Cuota Mensual')}}
+            {{form_errors(formulario.cuotaMes)}}
+            {{form_widget(formulario.cuotaMes)}}
+        </div>
+        <div>
+            {{form_label(formulario.activo,'Servicio activo')}}
+            {{form_errors(formulario.activo)}}
+            {{form_widget(formulario.activo)}}
+        </div>
+        {{form_rest(formulario)}}
+        <button class="btn btn-info">Transferir</button>
+    </form>
+    <a href="{{path('afiliaciones')}}" class="btn btn-info ajaxsimple">Afiliaciones</a>
+{% endblock %}

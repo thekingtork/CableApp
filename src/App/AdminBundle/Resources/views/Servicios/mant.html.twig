@@ -1,0 +1,9 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Mantenimiento</h1>
+    <form action="{{path('buscarmant')}}" method="post" class="ajaxdatos">
+        <span class="label label-default">Ingrese numero de cedula</span>
+        <input type="text" name="mydato" id="mydato" />
+        <button class="btn btn-default">Buscar</button>
+    </form>
+{% endblock %}

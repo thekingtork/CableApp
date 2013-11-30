@@ -57,8 +57,22 @@ class EmpleadosController extends Controller
         return $this->render('AdminBundle:Empleados:addperfil.html.twig',array('perfiles'=>$perfiles,'formulario'=>$formulario->createView()));
     }
     
-    public function editempleadoAction()
+    public function editempleadoAction($ind)
     {
-        
+        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('AdminBundle:Empleado')->find($ind);
+        $formulario = $this->createForm(new EmpleadoType(),$empleado);
+        if($request->getMethod()=='POST')
+        {
+            $formulario->bind($request);
+            if($formulario->isValid())
+            {   
+                $em->persist($empleado);
+                $em->flush();
+                return $this->render('AdminBundle:Empleados:exito.html.twig');
+            }
+        }
+        return $this->render('AdminBundle:Empleados:editempleado.html.twig',array('empleado'=>$empleado,'formulario'=>$formulario->createView()));
     }
 }

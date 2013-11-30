@@ -22,9 +22,9 @@ class NCuotaInstalacion
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="ncuotas", type="integer")
+     * @ORM\Column(name="ncuotas", type="string", length=100)
      */
     private $ncuotas;
 
@@ -38,11 +38,16 @@ class NCuotaInstalacion
     {
         return $this->id;
     }
+    
+    public function __toString()
+    {
+        return $this->getNcuotas();
+    }
 
     /**
      * Set ncuotas
      *
-     * @param integer $ncuotas
+     * @param string $ncuotas
      * @return NCuotaInstalacion
      */
     public function setNcuotas($ncuotas)
@@ -55,15 +60,10 @@ class NCuotaInstalacion
     /**
      * Get ncuotas
      *
-     * @return integer 
+     * @return string 
      */
     public function getNcuotas()
     {
         return $this->ncuotas;
-    }
-    
-    public function __toString()
-    {
-        return $this->getNcuotas();
     }
 }

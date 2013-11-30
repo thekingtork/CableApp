@@ -1,0 +1,123 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Facturar</h1>
+    <div class="container">
+    {% if factura %}
+        {# desactivado<div class="row">
+            <div class="col col-md-4">
+                Contrato: <br /> <span class="label label-info">{{factura.ncontrato}}</span><br />
+                Cliente: <br /> <span class="label label-info">{{factura.nombres}} {{factura.apellidos}}</span><br />
+                {{factura.tipoDocumento}} : <br /> <span class="label label-info">{{factura.documento}}</span><br />
+                Direccion:<br /> <span class="label label-info">{{factura.direccion}}</span>
+                
+            </div>
+            <div class="col col-md-4">
+                Valor a pagar:<br />
+                <span class="label label-info">{{factura.cuotames}}</span>
+            </div>
+            <div class="col col-md-4">
+                <a href="#" class="btn btn-info">Generar factura</a>
+            </div>
+        </div>desactivado#}
+        <form action="" method="post" class="">
+        <div>
+            {{form_errors(formulario)}}
+        </div>
+        <div>
+            {{form_label(formulario.ncontrato,'Contrato Nro')}}
+            {{form_errors(formulario.ncontrato)}}
+            {{form_widget(formulario.ncontrato,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.documento,'Tipo Documento')}}
+            {{form_errors(formulario.tipoDocumento)}}
+            {{form_widget(formulario.tipoDocumento,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.documento,'Documento')}}
+            {{form_errors(formulario.documento)}}
+            {{form_widget(formulario.documento,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.rsocial,'Razon social')}}
+            {{form_errors(formulario.rsocial)}}
+            {{form_widget(formulario.rsocial,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.nombres,'Nombres')}}
+            {{form_errors(formulario.nombres)}}
+            {{form_widget(formulario.nombres,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.apellidos,'Apellidos')}}
+            {{form_errors(formulario.apellidos)}}
+            {{form_widget(formulario.apellidos,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.fechaInstalacion,'Fecha de Instalacion')}}
+            {{form_errors(formulario.fechaInstalacion)}}
+            {{form_widget(formulario.fechaInstalacion,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.tipoTelefono,'Tipo Contacto')}}
+            {{form_errors(formulario.tipoTelefono)}}
+            {{form_widget(formulario.tipoTelefono,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.telefono,'Telefono')}}
+            {{form_errors(formulario.telefono)}}
+            {{form_widget(formulario.telefono,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.correo,'Correo')}}
+            {{form_errors(formulario.correo)}}
+            {{form_widget(formulario.correo,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.direccion,'Direccion')}}
+            {{form_errors(formulario.direccion)}}
+            {{form_widget(formulario.direccion,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.valorInscripcion,'Valor Inscripcion')}}
+            {{form_errors(formulario.valorInscripcion)}}
+            {{form_widget(formulario.valorInscripcion,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.ncuotas,'Nro Cuotas')}}
+            {{form_errors(formulario.ncuotas)}}
+            {{form_widget(formulario.ncuotas,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.cuota1,'Vr Cuota 1')}}
+            {{form_errors(formulario.cuota1)}}
+            {{form_widget(formulario.cuota1,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.cuota1,'Vr Cuota 2')}}
+            {{form_errors(formulario.cuota2)}}
+            {{form_widget(formulario.cuota2,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.cuota1,'Vr Cuota 3')}}
+            {{form_errors(formulario.cuota3)}}
+            {{form_widget(formulario.cuota3,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.cuotaMes,'Cuota Mensual')}}
+            {{form_errors(formulario.cuotaMes)}}
+            {{form_widget(formulario.cuotaMes,{attr:{'disabled':'true'}})}}
+        </div>
+        <div>
+            {{form_label(formulario.activo,'Servicio activo')}}
+            {{form_errors(formulario.activo)}}
+            {{form_widget(formulario.activo,{attr:{'disabled':'true'}})}}
+        </div>
+        {{form_rest(formulario)}}
+        <button class="btn btn-info">Generar factura</button>
+    </form>
+    {% else %}
+        <span class="label label-danger">Sin resultados</span>
+    {% endif %}
+    </div>
+{% endblock %}

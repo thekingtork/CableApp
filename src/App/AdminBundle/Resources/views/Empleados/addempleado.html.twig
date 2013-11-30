@@ -1,0 +1,45 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <h1>Empleados registrados</h1>
+    <table class="table table-hover"><!--Inicio Tabla-->
+        <tr>
+            <td>Nombres</td>
+            <td>Apellidos</td>
+            <td>Identificacion</td>
+            <td>Telefono</td>
+            <td>Nombres</td>
+            <td>Salario</td>
+            <td>Estado</td>
+        </tr>
+    {% for item in empleados %}
+        <tr>
+            <td>{{item.nombres}}</td>
+            <td>{{item.apellidos}}</td>
+            <td>{{item.identificacion}}</td>
+            <td>{{item.telefono}}</td>
+            <td>{{item.perfil}}</td>
+            <td>$ {{item.salario}}</td>
+            <td>
+                {% if item.activo == 1 %}
+                    <span class="glyphicon glyphicon-ok"></span>
+                {% else %}
+                    <span class="glyphicon glyphicon-remove"></span>
+                {% endif %}
+            </td>
+            <td><span class="glyphicon glyphicon-pencil"></span> Editar</td>
+        </tr>
+    {% else %}
+        <p class="alert alert-danger">No hay empleados registrados actualmente</p>
+    {% endfor %}
+    </table><!--*******************Fin Tabla**************-->
+    <button class="btn btn-info activar">Nuevo Empleado <span class="glyphicon glyphicon-plus"></span></button>
+    <a href="{{path('adminempleados')}}" class="btn btn-info ajaxsimple">Atr&aacute;s</a>
+    <div class="elemento" style="display: none;">
+        <h1>Registrar Nuevo empleado</h1>
+        <form action="{{path('addempleado')}}" method="post" class="ajaxdatos">
+            {{form_widget(formulario)}}
+            <br />
+            <button class="btn btn-info">Registrar</button>
+        </form>
+    </div>
+{% endblock %}

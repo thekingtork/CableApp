@@ -1,0 +1,19 @@
+admin_homepage:
+    pattern:  /
+    defaults: { _controller: AdminBundle:General:index }
+
+adminempleados:
+    pattern:  /adminempleados
+    defaults: { _controller: AdminBundle:Empleados:adminEmpleados }
+
+addempleado:
+    pattern:  /addempleados
+    defaults: { _controller: AdminBundle:Empleados:addempleado }
+
+addperfil:
+    pattern:  /addperfil
+    defaults: { _controller: AdminBundle:Empleados:addperfil }
+
+editempleado:
+    pattern:  /editempleado
+    defaults: { _controller: AdminBundle:Empleados:aditempleado }

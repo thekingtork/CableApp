@@ -1,0 +1,21 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Registrar Nuevo Perfil</h1>
+    {% for item in perfiles %}
+        <p class="alert alert-info">{{item.perfil}}</p>
+    {% else %}
+        <p class="alert alert-danger">No hay perfiles registrados</p>
+    {% endfor %}
+    <form action="{{path('addperfil')}}" method="post" class="ajaxdatos">
+        <div>{{form_errors(formulario)}}</div>
+        <div class="col col-md-12">
+            {{form_errors(formulario.perfil)}}
+            {{form_widget(formulario.perfil,{attr:{'placeholder':'Escribe un perfil'}})}}
+        </div>
+        {{form_rest(formulario)}}
+        <br />
+        <button class="btn btn-info">Registrar</button>
+        <a href="{{path('adminempleados')}}" class="btn btn-info ajaxsimple">Atr&aacute;s</a>
+    </form>
+    
+{% endblock %}

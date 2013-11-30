@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        {% block css %}
+            <link type="text/css" rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <style type="text/css">
+            body{margin-top: 4.5em;}
+        </style>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation"><!--Barra superior-->
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="#">CableSoft</a>
+            </div>
+            <div class="navbar-collapse collapse" id="administrar">
+              <ul class="nav navbar-nav">
+                <li><a href="{{path('admin_homepage')}}" class="ajaxsimple">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{path('adminempleados')}}" class="ajaxsimple">Administrar empleados</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li class="active"><a href="./">Fixed top</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div><!--*************************Fin barra superior***********************-->
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-12 jumbotron" id="dinamico">
+                    {% block dinamico %}<h1>Barra derecha</h1>{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
+            <script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/cablesoft.js')}}"></script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,9 +1,18 @@
 {% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
 {% block dinamico %}
-	<h1>Facturacion</h1>
-    <form action="{{path('buscarfact')}}" method="post" class="ajaxdatos">
-        <span class="label label-default">Ingrese numero de cedula</span>
-        <input type="text" name="mydato" id="mydato" />
-        <button class="btn btn-default">Buscar</button>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <h1>Facturacion</h1>
+                <form action="{{path('buscarfact')}}" method="post" class="ajaxdatos">
+                    <span class="label label-default">Cedula o NIT (Suscriptor)</span>
+                    <input type="text" name="mydato" id="mydato" />
+                    <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </form>      
+            </div>
+            <div>
+                <a href="{{path('adminfacturas')}}" class="btn btn-info ajaxsimple">Aministrar Facturas</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

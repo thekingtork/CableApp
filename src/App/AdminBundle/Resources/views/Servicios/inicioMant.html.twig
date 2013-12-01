@@ -1,0 +1,26 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div>
+	<h1>Generar Orden de Mantenimiento</h1>
+    <form action="{{path('buscarmant')}}" method="post" class="ajaxdatos">
+        <span class="label label-default">Cedula o NIT (suscriptor)</span>
+        <input type="text" name="mydato" id="mydato" />
+        <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+    <br />
+    <a href="{{path('adminmant')}}" class="btn btn-info ajaxsimple">Administracion de mantenimientos</a>
+    <button class="btn btn-info activar">registrar tipos de problemas</button>
+    </div>
+    <div class="elemento" style="display: none;">
+        <h1>Registrar tipos de inconvenientes</h1>
+        {% for item in problemas %}
+            <span class="label label-info">{{item.problema}}</span>
+        {% else %}
+            <span class="label label-warning">No hay registrados tipos de problemas</span>
+        {% endfor %}
+        <form action="{{path('mant')}}" method="post" class="ajaxdatos">
+            {{form_widget(formulario)}}
+            <button class="btn btn-info">Registrar</button>
+        </form>
+    </div>
+{% endblock %}

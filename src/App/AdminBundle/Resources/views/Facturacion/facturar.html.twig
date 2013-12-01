@@ -1,6 +1,7 @@
 {% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
 {% block dinamico %}
 	<h1>Facturar</h1>
+    <a href="{{path('facturacion')}}" class="ajaxsimple"><span class="glyphicon glyphicon-folder-open"></span> Facturacion</a>
     <div class="container">
     {% if afiliacion %}
         <div class="row">
@@ -18,9 +19,19 @@
             <div class="col col-md-4">
                 <form action="{{path('buscarfact')}}" method="post" class="ajaxdatos">
                     {{form_widget(formulario)}}
+                    {% for f in facturas %}
+                        {% if f.afiliacion.ncontrato == afiliacion.ncontrato and f.fechaExp|date('Ym') == 'now'|date('Ym') %}
+                            <span class="label label-warning">Ojo ya se ha generado una factura recientemente para este cliente</span>
+                            <span class="label label-success">Ultima factura generada {{f.fechaExp|date('d/m/Y')}}</span>
+                        {% endif %}
+                    {% else %}
+                        <p>No hay facturas</p>
+                    {% endfor %}
                     <button class="btn btn-info">Generar Factura</button>
                 </form>
             </div>
+        </div>
+        <div>
         </div>
     {% else %}
         <span class="label label-danger">Sin resultados</span>

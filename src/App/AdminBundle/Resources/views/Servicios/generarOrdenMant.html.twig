@@ -1,0 +1,60 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+	<h1>Orden mantenimiento</h1>
+    <a href="{{path('mant')}}" class="ajaxsimple"><span class="glyphicon glyphicon-cog"></span> Mantenimiento</a>
+    <div class="container">
+    {% if afiliacion %}
+        <div class="row">
+            <div class="col col-md-4">
+                Contrato: <br /> <span class="label label-info">{{afiliacion.ncontrato}}</span><br />
+                Cliente: <br /> <span class="label label-info">{{afiliacion.nombres}} {{afiliacion.apellidos}}</span><br />
+                {{afiliacion.tipoDocumento}} : <br /> <span class="label label-info">{{afiliacion.documento}}</span><br />
+                Direccion:<br /> <span class="label label-info">{{afiliacion.direccion}}</span>
+                
+            </div>
+            <div class="col col-md-4">
+                Valor a pagar:<br />
+                <span class="label label-info">{{afiliacion.cuotames}}</span>
+            </div>
+            <div class="col col-md-4">
+                <form action="{{path('buscarmant')}}" method="post" class="ajaxdatos">
+                    {{form_widget(formulario)}}
+                    <button class="btn btn-info">Generar orden</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover">
+                <tr>
+                    <td>Nro M/to</td>
+                    <td>Fecha Reporte</td>
+                    <td>Problema</td>
+                    <td>Encargado</td>
+                    <td>Solucionado</td>
+                </tr>
+            {% for i in mantenimientos %}
+                {% if(i.afiliacion.ncontrato == afiliacion.ncontrato) %}
+                    <tr>
+                        <td>{{i.nroMantenimiento}}</td>
+                        <td>{{i.fechaReg | date('d/m/Y')}}</td>
+                        <td>{{i.problema}}</td>
+                        <td>{{i.tecnico}}</td>
+                        <td>
+                            {% if i.solucion == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <span class="label label-warning">Sin historial de mantenimientos</span>
+            {% endfor %}
+            </table>
+        </div>
+    {% else %}
+        <span class="label label-danger">Sin resultados</span>
+    {% endif %}
+    </div>
+{% endblock %}

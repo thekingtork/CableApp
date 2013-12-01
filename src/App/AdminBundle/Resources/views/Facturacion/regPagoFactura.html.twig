@@ -1,0 +1,12 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div>
+	<h1>Registrar Pago de factura en el sistema</h1>
+    <form action="{{path('regpago',{'ind':factura.id})}}" method="post" class="ajaxdatos">
+        {{form_widget(formulario)}}
+		<button class="btn btn-info">Registrar Pago</button>
+    </form>
+    <br />
+    <a href="{{path('adminfacturas')}}" class="btn btn-info ajaxsimple">Administracion de facturas</a>
+    </div>
+{% endblock %}

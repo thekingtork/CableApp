@@ -175,7 +175,7 @@ class Empleado
     
     public function __toString()
     {
-        $nombre = $this->getNombres().' '.$this->getApellidos();
+        $nombre = $this->getNombres().' - '.$this->getPerfil();
         return $nombre;
     }
 

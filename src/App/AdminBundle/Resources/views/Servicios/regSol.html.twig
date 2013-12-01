@@ -1,0 +1,12 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div>
+	<h1>Registrar solucion en el sistema</h1>
+    <form action="{{path('regsol',{'ind':mantenimiento.id})}}" method="post" class="ajaxdatos">
+        {{form_widget(formulario)}}
+		<button class="btn btn-info">Registrar Solucion</button>
+    </form>
+    <br />
+    <a href="{{path('adminmant')}}" class="btn btn-info ajaxsimple">Administracion de mantenimientos</a>
+    </div>
+{% endblock %}

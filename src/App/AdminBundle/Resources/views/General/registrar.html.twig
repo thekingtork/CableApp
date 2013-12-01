@@ -1,0 +1,10 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div id="content" class="grid_12">
+        <h1>Registrar Administrador</h1>
+			<form action="{{path('registrar')}}" method="post">
+				{{form_widget(form)}}
+				<button class="btn btn-info">Registrar Administrador</button>
+			</form>
+		</div>
+{% endblock %}

@@ -56,6 +56,14 @@ buscarfact:
     pattern:  /buscarfact
     defaults: { _controller: AdminBundle:Facturacion:buscarfact }
 
+adminfacturas:
+    pattern:  /adminfacturas
+    defaults: { _controller: AdminBundle:Facturacion:adminFacturas }
+
+regpago:
+    pattern:  /regpago/{ind}
+    defaults: { _controller: AdminBundle:Facturacion:regPago }
+
 mant:
     pattern:  /mant
     defaults: { _controller: AdminBundle:Servicios:mant }
@@ -63,3 +71,11 @@ mant:
 buscarmant:
     pattern:  /buscarmant
     defaults: { _controller: AdminBundle:Servicios:buscarmant }
+
+adminmant:
+    pattern:  /adminmant
+    defaults: { _controller: AdminBundle:Servicios:adminMant }
+
+regsol:
+    pattern:  /regsol/{ind}
+    defaults: { _controller: AdminBundle:Servicios:regSol }

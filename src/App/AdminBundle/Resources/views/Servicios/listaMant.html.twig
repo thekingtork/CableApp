@@ -1,0 +1,46 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <h1>Mantenimientos</h1>
+                <a href="{{path('mant')}}" class="ajaxsimple"><span class="glyphicon glyphicon-cog"></span> Mantenimiento</a>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Nro</td>
+                        <td>Suscriptor</td>
+                        <td>Fecha</td>
+                        <td>Encargado</td>
+                        <td>Problema</td>
+                        <td>Solucionado</td>
+                    </tr>
+                {% for i in mantenimientos %}
+                    <tr>
+                        <td>{{i.nroMantenimiento}}</td>
+                        <td>{{i.afiliacion.nombres}}</td>
+                        <td>{{i.fechaReg|date('d/m/Y')}}</td>
+                        <td>{{i.tecnico}}</td>
+                        <td>{{i.problema}}</td>
+                        <td>
+                            {% if i.solucion == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if i.solucion == 1 %}
+                                <span class="label label-success">Solucionado</span>
+                            {% else %}
+                                <a href="{{path('regsol',{'ind':i.id})}}" class="btn btn-danger ajaxsimple">Reg solucion</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <span class="label label-warning">No hay registro de mantenimientos</span>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

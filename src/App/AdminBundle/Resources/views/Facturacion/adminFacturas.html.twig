@@ -1,0 +1,48 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <h1>Administracion de Facturas</h1>
+                <a href="" class="ajaxsimple"><span class="glyphicon glyphicon-cog"></span> Facturacion</a>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Nro fact</td>
+                        <td>Contrato</td>
+                        <td>Nombres</td>
+                        <td>Documento</td>
+                        <td>Fecha Exp</td>
+                        <td>Fecha Corte</td>
+                        <td>Pago</td>
+                    </tr>
+                {% for i in facturas %}
+                    <tr>
+                        <td>{{i.nroFactura}}</td>
+                        <td>{{i.afiliacion.ncontrato}}</td>
+                        <td>{{i.afiliacion.nombres}}</td>
+                        <td>{{i.afiliacion.documento}}</td>
+                        <td>{{i.fechaExp|date('d/m/Y')}}</td>
+                        <td>{{i.fechaCorte|date('d/m/Y')}}</td>
+                        <td>
+                            {% if i.pago == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if i.pago == 1 %}
+                                <span class="label label-success">Pagada</span>
+                            {% else %}
+                                <a href="{{path('regpago',{'ind':i.id})}}" class="btn btn-danger ajaxsimple">Reg Pago</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <span class="label label-warning">No hay registro de facturas</span>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

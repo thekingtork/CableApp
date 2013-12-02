@@ -64,6 +64,18 @@ regpago:
     pattern:  /regpago/{ind}
     defaults: { _controller: AdminBundle:Facturacion:regPago }
 
+ordencorte:
+    pattern:  /ordencorte/{ind}/{afiliacion}
+    defaults: { _controller: AdminBundle:Servicios:ordenCorte }
+
+admincortes:
+    pattern:  /admincortes
+    defaults: { _controller: AdminBundle:Servicios:adminCortes }
+
+ordenreconexion:
+    pattern:  /ordenreconexion/{ind}/{afiliacion}
+    defaults: { _controller: AdminBundle:Servicios:ordenReconexion }
+
 mant:
     pattern:  /mant
     defaults: { _controller: AdminBundle:Servicios:mant }

@@ -18,6 +18,8 @@ class MantenimientoType extends AbstractType
             ->add('problema')
             ->add('tecnico')
             ->add('afiliacion')
+            ->add('valor')
+            //->add('pago')
         ;
     }
 

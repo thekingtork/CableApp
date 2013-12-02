@@ -12,11 +12,7 @@
                 Direccion:<br /> <span class="label label-info">{{afiliacion.direccion}}</span>
                 
             </div>
-            <div class="col col-md-4">
-                Valor a pagar:<br />
-                <span class="label label-info">{{afiliacion.cuotames}}</span>
-            </div>
-            <div class="col col-md-4">
+            <div class="col col-md-8">
                 <form action="{{path('buscarmant')}}" method="post" class="ajaxdatos">
                     {{form_widget(formulario)}}
                     <button class="btn btn-info">Generar orden</button>

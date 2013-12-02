@@ -8,6 +8,11 @@ use App\AdminBundle\Form\MantenimientoType;
 use App\AdminBundle\Form\MantenimientoSolType;
 use App\AdminBundle\Entity\TipoProblema;
 use App\AdminBundle\Form\TipoProblemaType;
+use App\AdminBundle\Form\FacturaType;
+use App\AdminBundle\Entity\OrdenCorte;
+use App\AdminBundle\Form\OrdenCorteType;
+use App\AdminBundle\Entity\OrdenReconexion;
+use App\AdminBundle\Form\OrdenReconexionType;
 
 class ServiciosController extends Controller
 {
@@ -93,6 +98,67 @@ class ServiciosController extends Controller
         }
         return $this->render('AdminBundle:Servicios:regSol.html.twig',array('mantenimiento'=>$mantenimiento,'formulario'=>$formulario->createView()));
     }
+    
+    public function ordenCorteAction($ind,$afiliacion)
+    {
+        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        $orden = new OrdenCorte();
+        $factura = $em->getRepository('AdminBundle:Factura')->find($ind);
+        $orden->setFecha(new \DateTime());
+        $reg= $em->getRepository('AdminBundle:Afiliacion')->find($afiliacion);
+        $orden->setAfiliacion($reg);
+        $cortes = $em->getRepository('AdminBundle:OrdenCorte')->findAll();
+        $formulario = $this->createForm(new OrdenCorteType(),$orden);
+        if($request->getMethod()=='POST')
+        {
+            $formulario->bind($request);
+            if($formulario->isValid())
+            {
+                $orden->setActiva(true);
+                $em->persist($orden);
+                $em->flush();
+                $facturas = $em->getRepository('AdminBundle:Factura')->findDatosFactura();
+                return $this->render('AdminBundle:Facturacion:adminFacturas.html.twig',array('facturas'=>$facturas));
+            }
+        }
+        return $this->render('AdminBundle:Servicios:ordenCorte.html.twig',array('cortes'=>$cortes,'factura'=>$factura,'formulario'=>$formulario->createView()));
+    }
+    
+    public function adminCortesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $cortes = $em->getRepository('AdminBundle:OrdenCorte')->findAll();
+        return $this->render('AdminBundle:Servicios:listaCortes.html.twig',array('cortes'=>$cortes));
+    }
+    
+    public function ordenReconexionAction($ind,$afiliacion)
+    {
+        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        $orden = new OrdenReconexion();
+        $factura = $em->getRepository('AdminBundle:OrdenCorte')->find($ind);
+        $orden->setFecha(new \DateTime());
+        $reg= $em->getRepository('AdminBundle:Afiliacion')->find($afiliacion);
+        $orden->setAfiliacion($reg);
+        $reconexion = $em->getRepository('AdminBundle:OrdenReconexion')->findAll();
+        $formulario = $this->createForm(new OrdenReconexionType(),$orden);
+        if($request->getMethod()=='POST')
+        {
+            $formulario->bind($request);
+            if($formulario->isValid())
+            {
+                $orden->setActivo(true);
+                $em->persist($orden);
+                $em->flush();
+                $cortes = $em->getRepository('AdminBundle:OrdenCorte')->findAll();
+                return $this->render('AdminBundle:Servicios:listaCortes.html.twig',array('cortes'=>$cortes));
+            }
+        }
+        return $this->render('AdminBundle:Servicios:ordenReconexion.html.twig',array('reconexion'=>$reconexion,'factura'=>$factura,'formulario'=>$formulario->createView()));
+    }
+    
+    
     
 
 }

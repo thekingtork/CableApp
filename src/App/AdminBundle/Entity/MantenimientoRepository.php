@@ -39,4 +39,5 @@ class MantenimientoRepository extends EntityRepository
         $reg = $consulta->getSingleResult();
         return $reg;
     }
+    
 }

@@ -1,0 +1,29 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <h1>Cortes</h1>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Nro</td>
+                        <td>Nro Contrato</td>
+                        <td>Suscriptor</td>
+                        <td>Fecha</td>
+                    </tr>
+                {% for i in cortes %}
+                    <tr>
+                        <td>nro Corte</td>
+                        <td>{{i.afiliacion.ncontrato}}</td>
+                        <td>{{i.afiliacion.nombres}}</td>
+                        <td>{{i.fecha|date('d/m/Y')}}</td>
+                        <td><a href="{{path('ordenreconexion',{'ind':i.id,'afiliacion':i.afiliacion.id})}}" class="btn btn-default ajaxsimple">Reconexion</a></td>
+                    </tr>
+                {% else %}
+                    <span class="label label-warning">No hay registros de cortes</span>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

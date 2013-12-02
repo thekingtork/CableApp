@@ -66,6 +66,21 @@ class Mantenimiento
      * @ORM\Column(name="solucion", type="boolean")
      */
     private $solucion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor", type="string", length=255)
+     */
+    private $valor;
+    
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pago", type="boolean")
+     */
+    private $pago;
 
 
     /**
@@ -237,5 +252,51 @@ class Mantenimiento
     public function getAfiliacion()
     {
         return $this->afiliacion;
+    }
+
+    /**
+     * Set valor
+     *
+     * @param string $valor
+     * @return Mantenimiento
+     */
+    public function setValor($valor)
+    {
+        $this->valor = $valor;
+    
+        return $this;
+    }
+
+    /**
+     * Get valor
+     *
+     * @return string 
+     */
+    public function getValor()
+    {
+        return $this->valor;
+    }
+
+    /**
+     * Set pago
+     *
+     * @param boolean $pago
+     * @return Mantenimiento
+     */
+    public function setPago($pago)
+    {
+        $this->pago = $pago;
+    
+        return $this;
+    }
+
+    /**
+     * Get pago
+     *
+     * @return boolean 
+     */
+    public function getPago()
+    {
+        return $this->pago;
     }
 }

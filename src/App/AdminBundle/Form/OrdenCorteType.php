@@ -6,32 +6,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MantenimientoSolType extends AbstractType
+class OrdenCorteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nroMantenimiento')
-            ->add('fechaReg')
-            ->add('fechaSolucion')
-            ->add('solucion')
-            ->add('problema')
-            ->add('tecnico')
+            ->add('fecha')
+            //->add('activa')
             ->add('afiliacion')
-            ->add('valor')
-            ->add('pago')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\AdminBundle\Entity\Mantenimiento'
+            'data_class' => 'App\AdminBundle\Entity\OrdenCorte'
         ));
     }
 
     public function getName()
     {
-        return 'app_adminbundle_mantenimientosoltype';
+        return 'app_adminbundle_ordencortetype';
     }
 }

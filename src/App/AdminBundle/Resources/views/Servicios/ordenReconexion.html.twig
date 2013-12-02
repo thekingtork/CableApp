@@ -1,0 +1,32 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div class="container">
+    <div class="row">
+        <div class="col col-lg-12">
+            <h1>Generar reconexion</h1>
+            Nro contrato<span class="label label-info">{{factura.afiliacion.ncontrato}}</span><br />
+            Suscriptor<span class="label label-info">{{factura.afiliacion.apellidos~' '~' '~factura.afiliacion.nombres}}</span><br />
+            Razon social (Persona juridica)<span class="label label-info">{{factura.afiliacion.rsocial}}</span><br />
+            Identificacion<span class="label label-info">{{factura.afiliacion.documento}}</span><br />
+            Direccion<span class="label label-info">{{factura.afiliacion.direccion}}</span><br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-12">
+            <form action="{{path('ordenreconexion',{'ind':factura.id,'afiliacion':0})}}" method="post" class="ajaxdatos">
+                {{form_widget(formulario)}}
+                {% for c in reconexion %}
+                    {% if c.afiliacion.id == factura.afiliacion.id %}
+                        Cortes generados anteriormente anteriores<span class="label label-success">{{c.fecha|date('d/m/Y')}}</span><br />
+                    {% endif %}
+                {% else %}
+                    <span class="label label-warning">Historial de reconexiones vacio</span>
+                {% endfor %}
+        		<button class="btn btn-info">Generar orden de Reconexion</button>
+            </form>
+            <br />
+            <a href="{{path('adminfacturas')}}" class="btn btn-info ajaxsimple">Administracion de facturas</a>
+        </div>
+    </div>
+    </div>
+{% endblock %}

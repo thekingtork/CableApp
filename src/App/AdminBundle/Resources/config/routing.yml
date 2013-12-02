@@ -91,3 +91,11 @@ adminmant:
 regsol:
     pattern:  /regsol/{ind}
     defaults: { _controller: AdminBundle:Servicios:regSol }
+
+proovedores:
+      pattern: /proovedores
+      defaults: {_controller:AdminBundle:General:proovedores}
+
+cajam:
+      pattern: /cajam
+      defaults: {_controller:AdminBundle:General:cajaMenor}

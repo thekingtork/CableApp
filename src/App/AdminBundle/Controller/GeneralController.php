@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 use App\AdminBundle\Entity\Administrador;
 use App\AdminBundle\Form\AdministradorType;
+use App\AdminBundle\Entity\Proovedor;
+use App\AdminBundle\Form\ProovedorType;
+use App\AdminBundle\Entity\CajaMenor;
+use App\AdminBundle\Form\CajaMenorType;
 
 class GeneralController extends Controller
 {
@@ -51,5 +55,47 @@ class GeneralController extends Controller
     	$encoder = new \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder('sha512', true, 10);
     	$password = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
     	$entity->setPassword($password);
+    }
+    
+    public function proovedoresAction()
+    {
+        $request = $this->getRequest();
+        $proovedor = new Proovedor();
+        $formulario = $this->createForm(new ProovedorType(),$proovedor);
+        $em = $this->getDoctrine()->getManager();
+        $proovedores = $em->getRepository('AdminBundle:Proovedor')->findAll();
+        if($request->getMethod()=='POST')
+        {
+            $formulario->bind($request);
+            if($formulario->isValid())
+            {
+                $em->persist($proovedor);
+                $em->flush();
+                $proovedores = $em->getRepository('AdminBundle:Proovedor')->findAll();
+                return $this->render('AdminBundle:General:proovedores.html.twig',array('proovedores'=>$proovedores,'formulario'=>$formulario->createView()));
+            }
+        }
+        return $this->render('AdminBundle:General:proovedores.html.twig',array('proovedores'=>$proovedores,'formulario'=>$formulario->createView()));
+    }
+    
+    public function cajaMenorAction()
+    {
+        $request = $this->getRequest();
+        $cajam = new CajaMenor();
+        $formulario = $this->createForm(new CajaMenorType(),$cajam);
+        $em = $this->getDoctrine()->getManager();
+        $registros = $em->getRepository('AdminBundle:CajaMenor')->findAll();
+        if($request->getMethod()=='POST')
+        {
+            $formulario->bind($request);
+            if($formulario->isValid())
+            {
+                $em->persist($cajam);
+                $em->flush();
+                $registros = $em->getRepository('AdminBundle:CajaMenor')->findAll();
+                return $this->render('AdminBundle:General:cajamenor.html.twig',array('registros'=>$registros,'formulario'=>$formulario->createView()));
+            }
+        }
+        return $this->render('AdminBundle:General:cajamenor.html.twig',array('registros'=>$registros,'formulario'=>$formulario->createView()));
     }
 }

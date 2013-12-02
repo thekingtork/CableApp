@@ -1,0 +1,45 @@
+{% extends app.request.isXmlHttpRequest ? "::base_ajax.html.twig" : "::base.html.twig" %}
+{% block dinamico %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <h1>Proovedores</h1>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Identificacion</td>
+                        <td>Telefono</td>
+                        <td>Valor</td>
+                        <td>Estado</td>
+                    </tr>
+                {% for p in proovedores %}
+                    <tr>
+                        <td>{{p.nombre}}</td>
+                        <td>{{p.identificacion}}</td>
+                        <td>{{p.telefono}}</td>
+                        <td>{{p.valor}}</td>
+                        <td>
+                            {% if p.estado == 1 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <span class="label label-warning">No hay registro de proovedores</span>
+                {% endfor %}
+                </table>
+                <br />
+                <button class="btn btn-info activar">Nuevo Proovedor <span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+            <div class="elemento" style="display: none ;">
+                <h1>Nuevo Proovedor</h1>
+                <form action="{{path('proovedores')}}" method="post" class="ajaxdatos">
+                    {{form_widget(formulario)}}
+                    <button class="btn btn-info">Registrar proovedor</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

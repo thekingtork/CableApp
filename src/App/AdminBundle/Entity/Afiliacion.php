@@ -115,6 +115,13 @@ class Afiliacion
      * @ORM\Column(name="cuota1", type="integer")
      */
     private $cuota1;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pgc1", type="boolean")
+     */
+    private $pgc1;
 
     /**
      * @var integer
@@ -122,6 +129,13 @@ class Afiliacion
      * @ORM\Column(name="cuota2", type="integer")
      */
     private $cuota2;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pgc2", type="boolean")
+     */
+    private $pgc2;
 
     /**
      * @var integer
@@ -129,13 +143,14 @@ class Afiliacion
      * @ORM\Column(name="cuota3", type="integer")
      */
     private $cuota3;
-
+    
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="cuotaMes", type="integer")
+     * @ORM\Column(name="pgc3", type="boolean")
      */
-    private $cuotaMes;
+    private $pgc3;
+    
 
     /**
      * @var boolean
@@ -457,29 +472,6 @@ class Afiliacion
     }
 
     /**
-     * Set cuotaMes
-     *
-     * @param integer $cuotaMes
-     * @return Afiliacion
-     */
-    public function setCuotaMes($cuotaMes)
-    {
-        $this->cuotaMes = $cuotaMes;
-    
-        return $this;
-    }
-
-    /**
-     * Get cuotaMes
-     *
-     * @return integer 
-     */
-    public function getCuotaMes()
-    {
-        return $this->cuotaMes;
-    }
-
-    /**
      * Set activo
      *
      * @param boolean $activo
@@ -575,5 +567,74 @@ class Afiliacion
     public function __toString()
     {
         return $this->getNcontrato();
+    }
+
+    /**
+     * Set pgc1
+     *
+     * @param boolean $pgc1
+     * @return Afiliacion
+     */
+    public function setPgc1($pgc1)
+    {
+        $this->pgc1 = $pgc1;
+    
+        return $this;
+    }
+
+    /**
+     * Get pgc1
+     *
+     * @return boolean 
+     */
+    public function getPgc1()
+    {
+        return $this->pgc1;
+    }
+
+    /**
+     * Set pgc2
+     *
+     * @param boolean $pgc2
+     * @return Afiliacion
+     */
+    public function setPgc2($pgc2)
+    {
+        $this->pgc2 = $pgc2;
+    
+        return $this;
+    }
+
+    /**
+     * Get pgc2
+     *
+     * @return boolean 
+     */
+    public function getPgc2()
+    {
+        return $this->pgc2;
+    }
+
+    /**
+     * Set pgc3
+     *
+     * @param boolean $pgc3
+     * @return Afiliacion
+     */
+    public function setPgc3($pgc3)
+    {
+        $this->pgc3 = $pgc3;
+    
+        return $this;
+    }
+
+    /**
+     * Get pgc3
+     *
+     * @return boolean 
+     */
+    public function getPgc3()
+    {
+        return $this->pgc3;
     }
 }
